@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
                         composable(
                             route = Screen.CapsuleDetailScreen.route + "/{capsuleId}"
                         ){
-                            CapsuleDetailScreen()
+                            CapsuleDetailScreen(navController = navController)
                             //Screen.CapsuleDetailScreen
                         }
                     }

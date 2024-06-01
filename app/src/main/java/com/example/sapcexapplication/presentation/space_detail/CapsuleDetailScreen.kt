@@ -24,8 +24,8 @@ import com.example.sapcexapplication.presentation.space_list.componenets.Capsule
 
 @Composable
 fun CapsuleDetailScreen (
-    viewModel: CapsuleDetailViewModel = hiltViewModel()
-    //navController: NavController
+    viewModel: CapsuleDetailViewModel = hiltViewModel(),
+    navController: NavController
 ){
     val state = viewModel.state.value
     Box(modifier = Modifier.fillMaxSize()){

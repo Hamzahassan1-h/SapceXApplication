@@ -10,6 +10,4 @@ interface CapsuleRepository {
 
     suspend fun getCapsuleById(capsuleId: String ) : CapsuleDetailDto
 
-
-
 }
