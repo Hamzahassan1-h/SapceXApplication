@@ -10,8 +10,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.sapcexapplication.presentation.space_detail.CapsuleDetailScreen
+import com.example.sapcexapplication.presentation.space_list.CapsuleListScreen
 import com.example.sapcexapplication.presentation.ui.theme.SapceXApplicationTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,28 +26,27 @@ class MainActivity : ComponentActivity() {
             SapceXApplicationTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.CapsuleListScreen.route
+                    ) {
+                        composable(
+                            route = Screen.CapsuleListScreen.route
+                        ){
+                            CapsuleListScreen(navController = navController )
+                        }
+                        composable(
+                            route = Screen.CapsuleDetailScreen.route + "/{capsuleId}"
+                        ){
+                            CapsuleDetailScreen()
+                            //Screen.CapsuleDetailScreen
+                        }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SapceXApplicationTheme {
-        Greeting("Android")
     }
 }
